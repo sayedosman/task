@@ -1,0 +1,152 @@
+
+<div class="site-wrap">
+    <div class="container">
+        <div class="row">
+          <div class="container-fluid py-3 ">
+            <div class="card  ">
+              <div class="card-title bg-light text-dark text-center py-2 m-auto" style="width: 100%; height: 80px;" >
+                  Search Hotel  
+              </div>
+              <div  class="text-dark" style="margin-top: -16px; ">  <hr> </div>
+              
+              <div class="card-body">
+                <form [formGroup]="Search" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-4">
+                  <div class="input-group">
+                      
+                    <input type="date"  id="datetimepicker" min='{{checkDate}}' class="form-control border-dark"   [formControlName]="'checkin'"   placeholder="Check out"/>
+                    <div class="input-group-prepend">
+                      <span type="submit" class="input-group-text"><i class="ft-calendar"></i></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="input-group">
+                    <input type="date" required [formControlName]="'checkout'" class="form-control border-dark"  placeholder="Check in"/>
+                 <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ft-calendar"></i></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-2">
+                  
+                  </div>
+                <div class="col-2">
+                  <div class="input-group">
+                    <button type="submit" class="form-control btn-info"  [disabled]="!Search.valid" placeholder="Check out">Search<i class="pl-2  p-2 ft-search"></i></button>
+                  </div>
+                </div>
+                </div>
+            </form>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+</div>
+<div class="site-section">
+    <div class="container">
+
+      <div class="row mb-5" >
+        <div class="col-md-6 order-2">
+
+          <div class="row">
+            <div class="col-md-12 mb-5">
+            
+            
+              <div class="row"> 
+                <div class="float-md-left mb-4"><span class="text-black h5 text-info pr-2"> Sorting </span> Displaying {{dataLoud2.length}} hotels of {{contHotel}} hotels . Total Nights:{{totalNigt}} Night</div>
+            </div>
+             
+              <div class="d-flex">
+                <div class="card border-dark pl-1 pr-1 pt-2"style="width: 100%; height: 100px;">
+                  <div class="row">
+                    <div class="col-3"><button type="submit" (click)="highPrice()" class="btn-info " >High Price</button></div>
+                      <div class="col-3"><button type="submit" (click)="lowPrice()" class="btn-info " >Low Price</button></div>
+                        <div class="col-3"><button type="submit" (click)="AzSort()" class="btn-info " >A-Z Hotels</button></div>
+                          <div class="col-3"><button type="submit" (click)="ZaSort()" class=" btn-info " >Z-A Hotels</button></div>
+                  </div>
+                  </div>
+              </div>
+              <div class="row" *ngFor="let dataLoud of dataLoud2">
+                <div class="col-12" >
+                  <div class="card"  >
+                    <div class="card-title bg-light text-dark text-left px-2 py-2 m-auto" style="width: 100%; height: 80px;" >{{dataLoud.name}} </div>
+                    <div  class="text-dark" style="margin-top: -18px; " >  <hr> </div>
+                    <div class="card-body">
+                      <p>City : {{dataLoud.city}}</p>  
+                      <div  class="text-dark" >  <hr> </div>
+                      <p>Price : {{dataLoud.price*totalNigt}}  USD</p>  
+                      <div  class="text-dark" >  <hr> </div>
+                     </div>
+                     </div>
+                    </div>
+                </div>
+                
+                  
+
+                <div class="row">
+                  <div class="col-12 text-right">
+                   <button type="submit" class=" btn-primary" style="padding: 5px;"> Load More</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="col-md-6 order-1 mb-5 mb-md-0">
+          <div class="card">
+            <div class="card-title bg-light text-dark text-left px-2 py-2" style="width: 100%; height: 80px;" >Price </div>
+            <div  class="text-dark" style="margin-top: -35px; ">  <hr> </div>
+             <div class="card-body">
+              <div id="slider-range" class="border-primary"></div>
+              <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+             </div>
+            </div>
+            
+            <div class="card"  >
+              <div class="card-title bg-light text-dark text-left px-2 py-2 m-auto" style="width: 100%; height: 80px;" >City Name </div>
+              <div  class="text-dark" style="margin-top: -18px; " >  <hr> </div>
+               <div class="card-body" *ngFor="let dataLoud of dataLoud2" >
+                <label for="s_sm" class="d-flex">
+                  <input type="checkbox" id="s_sm" class="mr-2 "> <span class="text-black">{{dataLoud.city}}({{dataLoud.count}}) </span>
+                </label>
+                <div  class="text-dark" >  <hr> </div>
+                
+               </div>
+                <div class="text-center mx-auto">
+                <label for="s_lg" class="d-flex">
+                 <a  href=""><span class="text-black text-center mx-auto" style="font-weight: bold;">Show More >></span> </a>
+               
+                </label>
+               
+              </div>
+              <div class="card">
+                <div class="card-title bg-light text-dark text-left px-2 py-2 m-auto" style="width: 100%; height: 80px;" >Hotel Name </div>
+                <div  class="text-dark" style="margin-top: -18px; " >  <hr> </div>
+                 <div class="card-body" *ngFor="let dataLoud of dataLoud2; let i = index">
+                 
+                  <div  class="text-dark"  >  <hr> </div>
+                  
+                  <label for="s_md" class="d-flex">
+                    <input type="checkbox" id="s_md" class="mr-2"> <span class="text-black">{{dataLoud.name}}({{dataLoud.count}})</span>
+                  </label>
+               
+                 </div>
+
+                  <div class="text-center mx-auto">
+                  <label for="s_lg" class="d-flex">
+                   <a  href=""><span class="text-black text-center mx-auto" style="font-weight: bold;">Show More >></span> </a>
+                 
+                  </label>
+                
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+</div>
+</div>
