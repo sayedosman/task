@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit {
     this.cdr.detectChanges();
  }
  onSubmit(){
+   dataLoud2:Data[]=[];
    this.Chekin=this.Search.get('checkin').value;
    this.ChekOut=this.Search.get('checkout').value;
    console.log((Date.parse(this.ChekOut)-Date.parse(this.Chekin))/86400000)
